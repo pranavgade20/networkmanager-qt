@@ -44,6 +44,7 @@
 #include "vlansetting.h"
 #include "vpnsetting.h"
 #include "wimaxsetting.h"
+#include "iptunnelsetting.h"
 
 #undef signals
 #include <libnm/NetworkManager.h>
@@ -191,6 +192,7 @@ void NetworkManager::ConnectionSettingsPrivate::initSettings(NMBluetoothCapabili
         addSetting(Setting::Ptr(new TunSetting()));
         addSetting(Setting::Ptr(new Ipv4Setting()));
         addSetting(Setting::Ptr(new Ipv6Setting()));
+        addSetting(Setting::Ptr(new IpTunnelSetting()));
         break;
     case ConnectionSettings::Unknown:
     default:
@@ -1062,8 +1064,8 @@ QDebug NetworkManager::operator <<(QDebug dbg, const NetworkManager::ConnectionS
         case Setting::Team:
             dbg.nospace() << *(settingPtr.staticCast<NetworkManager::TeamSetting>().data());
             break;
-        case Setting::Tun:
-            dbg.nospace() << *(settingPtr.staticCast<NetworkManager::TunSetting>().data());
+        case Setting::IpTunnel:
+            dbg.nospace() << *(settingPtr.staticCast<NetworkManager::IpTunnelSetting>().data());
             break;
         default:
             dbg.nospace() << *settingPtr.data();

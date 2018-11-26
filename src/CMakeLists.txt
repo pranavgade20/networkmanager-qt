@@ -79,6 +79,7 @@ set(NetworkManagerQt_SETTINGS_SRCS
     settings/genericsetting.cpp
     settings/tunsetting.cpp
     settings/vxlansetting.cpp
+    settings/iptunnelsetting.cpp
 )
 
 set(DBUS_INTERFACE_SRCS

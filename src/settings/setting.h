@@ -72,6 +72,7 @@ public:
         Team,
         Generic,
         Tun,
+        IpTunnel,
         Vxlan
     };
 
