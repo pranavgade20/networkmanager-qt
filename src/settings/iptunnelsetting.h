@@ -1,5 +1,5 @@
 /*
-    Copyright 2018 Jan Grulich <jgrulich@redhat.com>
+    Copyright 2018 Pranav Gade <pranavgade20@gmail.com>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -35,10 +35,11 @@
 #define NMQT_SETTING_IP_TUNNEL_CONFIG_INPUT_KEY             NM_SETTING_IP_TUNNEL_INPUT_KEY
 #define NMQT_SETTING_IP_TUNNEL_CONFIG_LOCAL                 NM_SETTING_IP_TUNNEL_LOCAL
 #define NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY            NM_SETTING_IP_TUNNEL_OUTPUT_KEY
-#define NMQT_SETTING_IP_TUNNEL_CONFIG_PARENT                NM_SETTING_IP_TUNNEL_PARENT
 #define NMQT_SETTING_IP_TUNNEL_CONFIG_REMOTE                NM_SETTING_IP_TUNNEL_REMOTE
 #define NMQT_SETTING_IP_TUNNEL_CONFIG_MODE                  NM_SETTING_IP_TUNNEL_MODE
 #define NMQT_SETTING_IP_TUNNEL_CONFIG_PATH_MTU_DISCOVERY    NM_SETTING_IP_TUNNEL_PATH_MTU_DISCOVERY
+#define NMQT_SETTING_IP_TUNNEL_CONFIG_PARENT                NM_SETTING_IP_TUNNEL_PARENT
+
 
 namespace NetworkManager
 {
@@ -91,11 +92,11 @@ public:
     void setLocal(const QString& local);
     QString local() const;
 
-    void setOutputKey(const QString& key);
-    QString outputKey() const;
-
     void setParent(const QString& parent);
     QString parent() const;
+
+    void setOutputKey(const QString& key);
+    QString outputKey() const;
 
     void setRemote(const QString& remote);
     QString remote() const;

@@ -226,6 +226,7 @@ ecm_generate_headers(NetworkManagerQt_SETTINGS_CamelCase_HEADERS
   WiredSetting
   WirelessSecuritySetting
   WirelessSetting
+  IpTunnelSetting
 
   RELATIVE settings
   REQUIRED_HEADERS NetworkManagerQt_SETTINGS_HEADERS

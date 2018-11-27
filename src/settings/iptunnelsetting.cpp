@@ -1,5 +1,5 @@
 /*
-    Copyright 2012-2013  Jan Grulich <jgrulich@redhat.com>
+    Copyright Pranav Gade <pranavgade20@gmail.com>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,7 @@
 #include <QDebug>
 
 NetworkManager::IpTunnelSettingPrivate::IpTunnelSettingPrivate()
-: name("NM_SETTING_IP_TUNNEL_SETTING_NAME")
+: name(NM_SETTING_IP_TUNNEL_SETTING_NAME)
 , mode(IpTunnelSetting::DefaultMode)
 , pathMtuDiscovery(true)
 , encapsulationLimit(0)
@@ -189,9 +189,10 @@ QString NetworkManager::IpTunnelSetting::inputKey() const
 
     return d->inputKey;
 }
+
 void NetworkManager::IpTunnelSetting::setLocal(const QString& local)
 {
-    Q_D(const IpTunnelSetting);
+    Q_D(IpTunnelSetting);
 
     d->local = local;
 }
@@ -202,22 +203,10 @@ QString NetworkManager::IpTunnelSetting::local() const
 
     return d->local;
 }
-void NetworkManager::IpTunnelSetting::setOutputKey(const QString& key)
-{
-    Q_D(const IpTunnelSetting);
 
-    d->outputKey = key;
-}
-
-QString NetworkManager::IpTunnelSetting::outputKey() const
-{
-    Q_D(const IpTunnelSetting);
-
-    return d->outputKey;
-}
 void NetworkManager::IpTunnelSetting::setParent(const QString& parent)
 {
-    Q_D(const IpTunnelSetting);
+    Q_D(IpTunnelSetting);
 
     d->parent = parent;
 }
@@ -228,9 +217,24 @@ QString NetworkManager::IpTunnelSetting::parent() const
 
     return d->parent;
 }
-void NetworkManager::IpTunnelSetting::setRemote(const QString& remote)
+
+void NetworkManager::IpTunnelSetting::setOutputKey(const QString& key)
+{
+    Q_D(IpTunnelSetting);
+
+    d->outputKey = key;
+}
+
+QString NetworkManager::IpTunnelSetting::outputKey() const
 {
     Q_D(const IpTunnelSetting);
+
+    return d->outputKey;
+}
+
+void NetworkManager::IpTunnelSetting::setRemote(const QString& remote)
+{
+    Q_D(IpTunnelSetting);
 
     d->remote = remote;
 }
@@ -241,7 +245,6 @@ QString NetworkManager::IpTunnelSetting::remote() const
 
     return d->remote;
 }
-/////////////////////////
 
 void NetworkManager::IpTunnelSetting::fromMap(const QVariantMap &setting)
 {
@@ -285,12 +288,12 @@ void NetworkManager::IpTunnelSetting::fromMap(const QVariantMap &setting)
         setLocal(setting.value(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_LOCAL)).toString());
     }
 
-    if (setting.contains(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY))) {
-        setOutputKey(setting.value(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY)).toString());
-    }
-
     if (setting.contains(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_PARENT))) {
         setParent(setting.value(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_PARENT)).toString());
+    }
+
+    if (setting.contains(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY))) {
+        setOutputKey(setting.value(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY)).toString());
     }
 
     if (setting.contains(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_REMOTE))) {
@@ -304,51 +307,51 @@ QVariantMap NetworkManager::IpTunnelSetting::toMap() const
 
     setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_PATH_MTU_DISCOVERY), pathMtuDiscovery());
 
-    if ((int)mode() >= 0) {
+    if ((int)mode() > 0) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_MODE), (int)mode());
     }
 
-    if (encapsulationLimit() >= 0) {
+    if (encapsulationLimit() > 0) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_ENCAPSULATION_LIMIT), encapsulationLimit());
     }
 
-    if (flags() >= 0) {
+    if (flags() > 0) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_FLAGS), flags());
     }
 
-    if (flowLabel() >= 0) {
+    if (flowLabel() > 0) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_FLOW_LABEL), flowLabel());
     }
 
-    if (mtu() >= 0) {
+    if (mtu() > 0) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_MTU), mtu());
     }
 
-    if (tos() >= 0) {
+    if (tos() > 0) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_TOS), tos());
     }
 
-    if (ttl() >= 0) {
+    if (ttl() > 0) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_TTL), ttl());
     }
 
-    if (inputKey() >= 0) {
+    if (!inputKey().isEmpty()) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_INPUT_KEY), inputKey());
     }
 
-    if (local() >= 0) {
+    if (!local().isEmpty()) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_LOCAL), local());
     }
 
-    if (outputKey() >= 0) {
-        setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY), outputKey());
-    }
-
-    if (parent() >= 0) {
+    if (!parent().isEmpty()) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_PARENT), parent());
     }
 
-    if (remote() >= 0) {
+    if (!outputKey().isEmpty()) {
+        setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY), outputKey());
+    }
+
+    if (!remote().isEmpty()) {
         setting.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_REMOTE), remote());
     }
 
@@ -371,8 +374,8 @@ QDebug NetworkManager::operator <<(QDebug dbg, const NetworkManager::IpTunnelSet
     dbg.nospace() << NMQT_SETTING_IP_TUNNEL_CONFIG_TTL << ": " << setting.ttl() << '\n';
     dbg.nospace() << NMQT_SETTING_IP_TUNNEL_CONFIG_INPUT_KEY << ": " << setting.inputKey() << '\n';
     dbg.nospace() << NMQT_SETTING_IP_TUNNEL_CONFIG_LOCAL << ": " << setting.local() << '\n';
-    dbg.nospace() << NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY << ": " << setting.outputKey() << '\n';
     dbg.nospace() << NMQT_SETTING_IP_TUNNEL_CONFIG_PARENT << ": " << setting.parent() << '\n';
+    dbg.nospace() << NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY << ": " << setting.outputKey() << '\n';
     dbg.nospace() << NMQT_SETTING_IP_TUNNEL_CONFIG_REMOTE << ": " << setting.remote() << '\n';
 
     return dbg.maybeSpace();

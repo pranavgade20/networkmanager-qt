@@ -1064,6 +1064,9 @@ QDebug NetworkManager::operator <<(QDebug dbg, const NetworkManager::ConnectionS
         case Setting::Team:
             dbg.nospace() << *(settingPtr.staticCast<NetworkManager::TeamSetting>().data());
             break;
+        case Setting::Tun:
+            dbg.nospace() << *(settingPtr.staticCast<NetworkManager::TunSetting>().data());
+            break;
         case Setting::IpTunnel:
             dbg.nospace() << *(settingPtr.staticCast<NetworkManager::IpTunnelSetting>().data());
             break;

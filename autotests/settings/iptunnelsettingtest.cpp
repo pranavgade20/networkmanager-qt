@@ -38,8 +38,8 @@ void IpTunnelSettingTest::testSetting_data()
     QTest::addColumn<quint32>("ttl");
     QTest::addColumn<QString>("inputKey");
     QTest::addColumn<QString>("local");
-    QTest::addColumn<QString>("outputKey");
     QTest::addColumn<QString>("parent");
+    QTest::addColumn<QString>("outputKey");
     QTest::addColumn<QString>("remote");
 
     QTest::newRow("setting1")
@@ -53,8 +53,8 @@ void IpTunnelSettingTest::testSetting_data()
             << (quint32)1                // ttl
             << QString("key")            // inputKey
             << QString("abc")            // local
-            << QString("out")            // outputKey
             << QString("par")            // parent
+            << QString("out")            // outputKey
             << QString("rem");           // remote
 }
 
@@ -70,8 +70,8 @@ void IpTunnelSettingTest::testSetting()
     QFETCH(quint32, ttl);
     QFETCH(QString, inputKey);
     QFETCH(QString, local);
-    QFETCH(QString, outputKey);
     QFETCH(QString, parent);
+    QFETCH(QString, outputKey);
     QFETCH(QString, remote);
 
     QVariantMap map;
@@ -86,8 +86,8 @@ void IpTunnelSettingTest::testSetting()
     map.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_TTL), ttl);
     map.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_INPUT_KEY), inputKey);
     map.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_LOCAL), local);
-    map.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY), outputKey);
     map.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_PARENT), parent);
+    map.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_OUTPUT_KEY), outputKey);
     map.insert(QLatin1String(NMQT_SETTING_IP_TUNNEL_CONFIG_REMOTE), remote);
 
     NetworkManager::IpTunnelSetting setting;
